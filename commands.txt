@@ -1,1 +1,12 @@
 gcloud dataproc workflow-templates create process_pyspark_etl --region=us-east4
+
+gcloud dataproc workflow-templates instantiate process_pyspark_etl \
+    --region us-east4
+
+
+gcloud scheduler jobs create http spark-workflow-sch \
+--schedule="45 20 * * *" \
+--uri="https://dataproc.googleapis.com/v1/projects/chrome-mediator-420023/regions/us-east4/workflowTemplates/process_pyspark_etl:instantiate" \
+--location="us-east4" \
+--time-zone="America/Lima" \
+--oauth-service-account-email="357253282211-compute@developer.gserviceaccount.com"
