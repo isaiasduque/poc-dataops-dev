@@ -1,0 +1,13 @@
+steps:
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Copy Resources
+  entrypoint: /bin/sh
+  args:
+  - '-c'
+  - |
+    gsutil -m cp -r dataproc/jobs/*.py gs://datalake-raw-poc/resources/dataproc/ && \
+    gsutil -m cp -r schemas/*.sql gs://datalake-raw-poc/resources/bigquery/
+
+options:
+  logging: CLOUD_LOGGING_ONLY
