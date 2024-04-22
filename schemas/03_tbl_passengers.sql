@@ -1,4 +1,4 @@
-CREATE  TABLE IF NOT EXIST raw_sales.tb_passengers_3
+CREATE  TABLE IF NOT EXISTS raw_sales.tb_passengers_3
 (
     PassengerId integer,
     Name STRING,
