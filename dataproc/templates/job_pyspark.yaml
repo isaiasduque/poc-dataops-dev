@@ -6,11 +6,11 @@ jobs:
   stepId: step_process_etl_01
 
 - pysparkJob:
-  jarFileUris:
-  - gs://datalake-raw-poc/resources/recursos_dataproc_spark-bigquery-with-dependencies_2.12-0.30.0.jar
-  mainPythonFileUri: gs://datalake-raw-poc/resources/dataproc/02_etl.py
-stepId: step_process_etl_02
-prerequisiteStepIds:
+    jarFileUris:
+    - gs://datalake-raw-poc/resources/recursos_dataproc_spark-bigquery-with-dependencies_2.12-0.30.0.jar
+    mainPythonFileUri: gs://datalake-raw-poc/resources/dataproc/02_etl.py
+  stepId: step_process_etl_02
+  prerequisiteStepIds:
     - step_process_etl_01
 
 - pysparkJob:
@@ -19,4 +19,4 @@ prerequisiteStepIds:
     mainPythonFileUri: gs://datalake-raw-poc/resources/dataproc/03_etl.py
   stepId: step_process_etl_03
   prerequisiteStepIds:
-      - step_process_etl_02
+    - step_process_etl_02
