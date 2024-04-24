@@ -18,6 +18,7 @@ steps:
   - '-c'
   - |
     gcloud config set project my-project-qa-421323 && \
+    bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc-qa/resources/bigquery/00_schemas.sql)" && \
     bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc-qa/resources/bigquery/01_tbl_passengers.sql)" && \
     bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc-qa/resources/bigquery/02_tbl_passengers.sql)" && \
     bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc-qa/resources/bigquery/03_tbl_passengers.sql)"
