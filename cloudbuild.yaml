@@ -7,7 +7,6 @@ steps:
   - '-c'
   - |
     gcloud config set project my-project-qa-421323 && \
-    gsutil mb gs://datalake-raw-poc-qa && \
     gsutil -m cp -r dataproc/jobs/*.py gs://datalake-raw-poc-qa/resources/dataproc/ && \
     gsutil -m cp -r schemas/*.sql gs://datalake-raw-poc-qa/resources/bigquery/
 
