@@ -6,8 +6,10 @@ steps:
   args:
   - '-c'
   - |
-    gsutil -m cp -r dataproc/jobs/*.py gs://datalake-raw-poc/resources/dataproc/ && \
-    gsutil -m cp -r schemas/*.sql gs://datalake-raw-poc/resources/bigquery/
+    gcloud config set project my-project-qa-421323 && \
+    gsutil mb gs://datalake-raw-poc-qa && \
+    gsutil -m cp -r dataproc/jobs/*.py gs://datalake-raw-poc-qa/resources/dataproc/ && \
+    gsutil -m cp -r schemas/*.sql gs://datalake-raw-poc-qa/resources/bigquery/
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Create schemas
@@ -15,10 +17,10 @@ steps:
   args:
   - '-c'
   - |
-    gcloud config set project chrome-mediator-420023 && \
-    bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc/resources/bigquery/01_tbl_passengers.sql)" && \
-    bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc/resources/bigquery/02_tbl_passengers.sql)" && \
-    bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc/resources/bigquery/03_tbl_passengers.sql)"
+    gcloud config set project my-project-qa-421323 && \
+    bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc-qa/resources/bigquery/01_tbl_passengers.sql)" && \
+    bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc-qa/resources/bigquery/02_tbl_passengers.sql)" && \
+    bq query --use_legacy_sql=false "$(gsutil cat gs://datalake-raw-poc-qa/resources/bigquery/03_tbl_passengers.sql)"
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Create dataproc ephemeral workflow 

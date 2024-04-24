@@ -4,8 +4,8 @@ gcloud dataproc workflow-templates instantiate process_pyspark_etl \
     --region us-east4
 
 
-gcloud scheduler jobs create http spark-workflow-sch \
---schedule="45 20 * * *" \
+gcloud scheduler jobs create http etl-spark-workflow \
+--schedule="00 09 * * *" \
 --uri="https://dataproc.googleapis.com/v1/projects/chrome-mediator-420023/regions/us-east4/workflowTemplates/process_pyspark_etl:instantiate" \
 --location="us-east4" \
 --time-zone="America/Lima" \
