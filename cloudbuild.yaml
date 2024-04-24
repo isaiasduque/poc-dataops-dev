@@ -28,6 +28,7 @@ steps:
   args:
   - '-c'
   - |    
+    gcloud dataproc workflow-templates create process_pyspark_etl --region=us-east4 && \
     gcloud dataproc workflow-templates import process_pyspark_etl \
     --source=dataproc/templates/job_pyspark.yaml --region=us-east4 && \
     gcloud dataproc workflow-templates set-managed-cluster process_pyspark_etl \
